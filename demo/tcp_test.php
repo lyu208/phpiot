@@ -30,7 +30,7 @@ $tcp_worker->onMessage = function($connection, $data)
 	echo "write success\n";
 	//echo $len;
 	$hello = explode(',',$data); 
-
+mysql_connect('localhost','root','') or die(mysql_error());
    for($i=0;$i<count($hello);$i++) 
     { 
       echo $hello[$i];echo "\n";
