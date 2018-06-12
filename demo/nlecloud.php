@@ -67,6 +67,7 @@
 		ApiTag 传感器标识
 		Value  数据
 		RecordTime 时间戳	
+		使用北京时间需要更改php.ini为date.timezone = PRC
 		*/
 		//echo "add\n";	
 		$sensorDataArray=  array(new SensorDataAdd(), new SensorDataAdd());
@@ -75,9 +76,9 @@
 		$sensorDataArray[0]->PointDTO = array(new SensorDataAddPoint());
 		$sensorDataArray[1]->PointDTO = array(new SensorDataAddPoint());
 		$sensorDataArray[0]->PointDTO[0]->Value=$Weight;
-		$sensorDataArray[0]->PointDTO[0]->RecordTime=date("Y-m-d");
+		$sensorDataArray[0]->PointDTO[0]->RecordTime=date('y-m-d h:i:s',time());
 		$sensorDataArray[1]->PointDTO[0]->Value=$Price;
-		$sensorDataArray[1]->PointDTO[0]->RecordTime=date("Y-m-d");
+		$sensorDataArray[1]->PointDTO[0]->RecordTime=date('y-m-d h:i:s',time());
 		$response = $nleApi->add_sensor_data($gatewayID,$sensorDataArray, $token);
 		if (!$response)
 		{
